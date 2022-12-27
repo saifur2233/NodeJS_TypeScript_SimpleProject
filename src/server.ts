@@ -17,8 +17,19 @@ mongoose
     console.log(error);
   });
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+app.get("/", (req, res, next) => {
+  res.status(200).json({ message: "Hello World!" });
+});
+
+// Error handling
+app.use("/*", (req, res, next) => {
+  const error = new Error("Not Found");
+  console.log(error);
+
+  return res.status(404).json({ message: error.message });
 });
 
 app.listen(port, () => {
