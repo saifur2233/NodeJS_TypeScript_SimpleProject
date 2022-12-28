@@ -4,11 +4,10 @@ import Book from "../models/Book";
 
 const createBook = (req: Request, res: Response, next: NextFunction) => {
   const { author, title } = req.body;
-
   const book = new Book({
     _id: new mongoose.Types.ObjectId(),
-    author,
     title,
+    author,
   });
 
   return book

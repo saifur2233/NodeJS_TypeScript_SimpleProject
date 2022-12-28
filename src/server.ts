@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import { config } from "./config/config";
 import authorRoutes from "./routes/authorRoute";
+import bookRoutes from "./routes/bookRoute";
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -49,6 +50,7 @@ const StartServer = () => {
 
   //Routes
   app.use("/api/v1", authorRoutes);
+  app.use("/api/v1", bookRoutes);
 
   // Error handling
   app.use("*", (req, res, next) => {
